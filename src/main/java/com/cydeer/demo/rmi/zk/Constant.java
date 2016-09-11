@@ -2,7 +2,7 @@ package com.cydeer.demo.rmi.zk;
 
 /**
  * Created by zhangsong on 16/8/11.
- * 链接zk的使用敞亮
+ * 链接zk的使用常量
  */
 public interface Constant {
 	// zookeeper地址
