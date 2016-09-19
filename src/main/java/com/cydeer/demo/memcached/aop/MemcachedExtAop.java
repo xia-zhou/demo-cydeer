@@ -20,10 +20,7 @@ import java.lang.reflect.Method;
 @Aspect
 public class MemcachedExtAop {
 	private final static Logger LOGGER = LoggerFactory.getLogger(MemcachedExtAop.class);
-
-	private CacheableExt cacheableExt;
-	private CacheEvictExt cacheEvictExt;
-
+	
 	private CacheApi cacheApi;
 
 	@Around("@annotation(com.cydeer.demo.memcached.annotation.CacheableExt)")
@@ -39,7 +36,7 @@ public class MemcachedExtAop {
 		}
 		MethodSignature methodSign = (MethodSignature) jp.getSignature();
 		Method method = targetClz.getMethod(methodName, methodSign.getParameterTypes());
-		cacheableExt = method.getAnnotation(CacheableExt.class);
+		CacheableExt cacheableExt = method.getAnnotation(CacheableExt.class);
 		if (cacheableExt == null) {
 			return jp.proceed();
 		}
@@ -71,7 +68,7 @@ public class MemcachedExtAop {
 		}
 		MethodSignature methodSign = (MethodSignature) jp.getSignature();
 		Method method = targetClz.getMethod(methodName, methodSign.getParameterTypes());
-		cacheEvictExt = method.getAnnotation(CacheEvictExt.class);
+		CacheEvictExt cacheEvictExt = method.getAnnotation(CacheEvictExt.class);
 		if (cacheEvictExt != null) {
 			String cacheKey = CacheKeyUtils
 					.buildCacheKey(cacheEvictExt.keyExt(), cacheEvictExt.keys(), targetClz, jp.getArgs());

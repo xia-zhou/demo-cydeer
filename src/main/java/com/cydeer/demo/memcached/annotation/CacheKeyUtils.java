@@ -54,7 +54,8 @@ public class CacheKeyUtils {
 									} else if (includeFields.contains(field.getName())) {
 										field.setAccessible(true);
 										try {
-											sb.append(UNDER_LINE).append(String.valueOf(field.get(arg)));
+											sb.append(UNDER_LINE).append(field.getName()).append(UNDER_LINE)
+											  .append(String.valueOf(field.get(arg)));
 										} catch (IllegalAccessException e) {
 											throw new IllegalArgumentException("key对应的值获取不到，key:" + field.getName());
 										}
